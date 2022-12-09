@@ -19,12 +19,21 @@
       <handler
             class="dev.kotatsu.rcptry2.handlers.FlashHandler"
             commandId="dev.kotatsu.rcptry2.commands.flashCommand">
+            <enabledWhen>
+  			   	<with variable="selection">
+			       <iterate ifEmpty="false" operator="or">
+			       	   <adapt type="org.eclipse.core.resources.IResource">
+			           		<test property="org.eclipse.core.resources.name" value="*hex"></test>
+			           </adapt>
+			       </iterate>
+			    </with>
+		    </enabledWhen>
       </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="dev.kotatsu.rcptry2.commands.sampleCommand"
+            commandId="dev.kotatsu.rcptry2.commands.flashCommand"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             contextId="org.eclipse.ui.contexts.window"
             sequence="M1+6">
@@ -71,7 +80,6 @@
 			       </iterate>
 		       </visibleWhen>
          </command>
-
       </menuContribution>
    </extension>
    <extension
