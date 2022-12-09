@@ -19,7 +19,6 @@ public class FlashHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		try {
 			final Flash flash = new Flash(event);
 			flash.execute();
@@ -32,9 +31,10 @@ public class FlashHandler extends AbstractHandler {
 
 }
 
+// The context of a single flash event.
 final class Flash {
-	ExecutionEvent event;
-	IWorkbenchWindow window;
+	final private ExecutionEvent event;
+	final private IWorkbenchWindow window;
 
 	public Flash(ExecutionEvent event) {
 		this.event = event;
@@ -42,7 +42,7 @@ final class Flash {
 	}
 
 	public void execute() throws ExecutionException {
-		final IFile selectedFile = extractSelecteFile();
+		final IFile selectedFile = extractSelectedFile();
 
 		if (!isHexFile(selectedFile)) {
 			throw new ExecutionException("Selected file is not a hex file");
@@ -52,7 +52,10 @@ final class Flash {
 		openMessageDialog("Hex Flasher", String.format("Flashing hex file: %s", selectedUri.toString()));
 	}
 
-	private IFile extractSelecteFile() throws ExecutionException {
+	// Extract selected file from current selection.
+	// Throws if selection is of an unexpected class, if has multiple selections, or
+	// if selected item is not a file.
+	private IFile extractSelectedFile() throws ExecutionException {
 		final ISelectionService selectionService = window.getSelectionService();
 		final ISelection selection = selectionService.getSelection();
 
@@ -64,12 +67,12 @@ final class Flash {
 		if (structuredSelection.size() != 1) {
 			throw new ExecutionException(String.format("Selection has size %d != 1", structuredSelection.size()));
 		}
-		Object selectedItem = structuredSelection.getFirstElement();
+		final Object selectedItem = structuredSelection.getFirstElement();
 
 		if (!(selectedItem instanceof IFile)) {
 			throw new ExecutionException("Selection is not an IFile");
 		}
-		IFile selectedFile = (IFile) Platform.getAdapterManager().getAdapter(selectedItem, IFile.class);
+		final IFile selectedFile = (IFile) Platform.getAdapterManager().getAdapter(selectedItem, IFile.class);
 		return selectedFile;
 	}
 
