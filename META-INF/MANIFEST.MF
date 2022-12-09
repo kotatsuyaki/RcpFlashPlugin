@@ -4,6 +4,7 @@ Bundle-Name: Rcptry2
 Bundle-SymbolicName: dev.kotatsu.rcptry2;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: dev.kotatsu
-Require-Bundle: org.eclipse.ui
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
 Automatic-Module-Name: dev.kotatsu.rcptry2
 Bundle-RequiredExecutionEnvironment: JavaSE-18
