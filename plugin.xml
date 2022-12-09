@@ -10,11 +10,14 @@
 		<handler class="dev.kotatsu.rcptry2.handlers.FlashHandler" commandId="dev.kotatsu.rcptry2.commands.flashCommand">
 			<enabledWhen>
 				<with variable="selection">
-					<iterate ifEmpty="false" operator="or">
-						<adapt type="org.eclipse.core.resources.IResource">
-							<test property="org.eclipse.core.resources.name" value="*hex"></test>
-						</adapt>
-					</iterate>
+					<and>
+						<count value="1" />
+						<iterate ifEmpty="false" operator="or">
+							<adapt type="org.eclipse.core.resources.IResource">
+								<test property="org.eclipse.core.resources.name" value="*hex"></test>
+							</adapt>
+						</iterate>
+					</and>
 				</with>
 			</enabledWhen>
 		</handler>
