@@ -11,14 +11,14 @@
       <command
             categoryId="dev.kotatsu.rcptry2.commands.category"
             name="Sample Command"
-            id="dev.kotatsu.rcptry2.commands.sampleCommand">
+            id="dev.kotatsu.rcptry2.commands.flashCommand">
       </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             class="dev.kotatsu.rcptry2.handlers.FlashHandler"
-            commandId="dev.kotatsu.rcptry2.commands.sampleCommand">
+            commandId="dev.kotatsu.rcptry2.commands.flashCommand">
       </handler>
    </extension>
    <extension
@@ -39,7 +39,7 @@
                label="Sample Menu"
                mnemonic="M">
             <command
-                  commandId="dev.kotatsu.rcptry2.commands.sampleCommand"
+                  commandId="dev.kotatsu.rcptry2.commands.flashCommand"
                   id="dev.kotatsu.rcptry2.menus.sampleCommand"
                   mnemonic="S">
             </command>
@@ -50,10 +50,11 @@
          <toolbar
                id="dev.kotatsu.rcptry2.toolbars.sampleToolbar">
             <command
-                  id="dev.kotatsu.rcptry2.toolbars.sampleCommand"
-                  commandId="dev.kotatsu.rcptry2.commands.sampleCommand"
-                  icon="icons/sample.png"
-                  tooltip="Say hello world">
+                  commandId="dev.kotatsu.rcptry2.commands.flashCommand"
+                  id="dev.kotatsu.rcptry2.toolbars.flashCommand"
+                  label="Flash hex"
+                  mnemonic="Flash hex"
+                  tooltip="Flash hex">
             </command>
          </toolbar>
       </menuContribution>
