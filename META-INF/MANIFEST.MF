@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Rcptry2
-Bundle-SymbolicName: dev.kotatsu.rcptry2;singleton:=true
+Bundle-SymbolicName: dev.kotatsu.rcpFlashPlugin;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: dev.kotatsu
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources
-Automatic-Module-Name: dev.kotatsu.rcptry2
+Automatic-Module-Name: dev.kotatsu.rcpFlashPlugin
 Bundle-RequiredExecutionEnvironment: JavaSE-18

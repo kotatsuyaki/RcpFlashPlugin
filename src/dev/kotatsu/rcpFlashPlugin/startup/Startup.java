@@ -1,4 +1,4 @@
-package dev.kotatsu.rcptry2.startup;
+package dev.kotatsu.rcpFlashPlugin.startup;
 
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;

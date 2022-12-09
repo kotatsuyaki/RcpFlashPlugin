@@ -1,4 +1,4 @@
-package dev.kotatsu.rcptry2.handlers;
+package dev.kotatsu.rcpFlashPlugin.handlers;
 
 import java.net.URI;
 
@@ -16,14 +16,13 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 public class FlashHandler extends AbstractHandler {
-
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
 			final Flash flash = new Flash(event);
 			flash.execute();
 		} catch (Exception e) {
-			System.out.printf("Error caught in FlashHandler.execute: %s\n", e.toString());
+			System.err.printf("Error caught in FlashHandler.execute: %s\n", e.toString());
 		}
 
 		return null;

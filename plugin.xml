@@ -3,11 +3,11 @@
 <plugin>
 
 	<extension point="org.eclipse.ui.commands">
-		<category id="dev.kotatsu.rcptry2.commands.category" name="Sample Category"></category>
-		<command categoryId="dev.kotatsu.rcptry2.commands.category" name="Sample Command" id="dev.kotatsu.rcptry2.commands.flashCommand"></command>
+		<category id="dev.kotatsu.rcpFlashPlugin.commands.category" name="Sample Category"></category>
+		<command categoryId="dev.kotatsu.rcpFlashPlugin.commands.category" name="Sample Command" id="dev.kotatsu.rcpFlashPlugin.commands.flashCommand"></command>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
-		<handler class="dev.kotatsu.rcptry2.handlers.FlashHandler" commandId="dev.kotatsu.rcptry2.commands.flashCommand">
+		<handler class="dev.kotatsu.rcpFlashPlugin.handlers.FlashHandler" commandId="dev.kotatsu.rcpFlashPlugin.commands.flashCommand">
 			<enabledWhen>
 				<with variable="selection">
 					<and>
@@ -23,21 +23,21 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.ui.bindings">
-		<key commandId="dev.kotatsu.rcptry2.commands.flashCommand" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" contextId="org.eclipse.ui.contexts.window" sequence="M1+6"></key>
+		<key commandId="dev.kotatsu.rcpFlashPlugin.commands.flashCommand" schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" contextId="org.eclipse.ui.contexts.window" sequence="M1+6"></key>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=additions">
-			<menu id="dev.kotatsu.rcptry2.menus.sampleMenu" label="Sample Menu" mnemonic="M">
-				<command commandId="dev.kotatsu.rcptry2.commands.flashCommand" id="dev.kotatsu.rcptry2.menus.sampleCommand" mnemonic="S"></command>
+			<menu id="dev.kotatsu.rcpFlashPlugin.menus.sampleMenu" label="Sample Menu" mnemonic="M">
+				<command commandId="dev.kotatsu.rcpFlashPlugin.commands.flashCommand" id="dev.kotatsu.rcpFlashPlugin.menus.sampleCommand" mnemonic="S"></command>
 			</menu>
 		</menuContribution>
 		<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-			<toolbar id="dev.kotatsu.rcptry2.toolbars.sampleToolbar">
-				<command commandId="dev.kotatsu.rcptry2.commands.flashCommand" id="dev.kotatsu.rcptry2.toolbars.flashCommand" label="Flash hex" mnemonic="Flash hex" tooltip="Flash hex"></command>
+			<toolbar id="dev.kotatsu.rcpFlashPlugin.toolbars.sampleToolbar">
+				<command commandId="dev.kotatsu.rcpFlashPlugin.commands.flashCommand" id="dev.kotatsu.rcpFlashPlugin.toolbars.flashCommand" label="Flash hex" mnemonic="Flash hex" tooltip="Flash hex"></command>
 			</toolbar>
 		</menuContribution>
 		<menuContribution allPopups="false" locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?before=group.edit">
-			<command commandId="dev.kotatsu.rcptry2.commands.flashCommand" label="Flash hex" style="push">
+			<command commandId="dev.kotatsu.rcpFlashPlugin.commands.flashCommand" label="Flash hex" style="push">
 				<visibleWhen checkEnabled="false">
 					<iterate ifEmpty="false" operator="or">
 						<test property="org.eclipse.core.resources.name" value="*hex"></test>
@@ -47,7 +47,7 @@
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.startup">
-		<startup class="dev.kotatsu.rcptry2.startup.Startup"></startup>
+		<startup class="dev.kotatsu.rcpFlashPlugin.startup.Startup"></startup>
 	</extension>
 
 </plugin>
