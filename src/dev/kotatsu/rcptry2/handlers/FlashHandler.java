@@ -14,7 +14,8 @@ public class FlashHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("trigger class is : " + event.getTrigger().getClass().getName());
+		System.out.println("FLASH HANDLER: Trigger class: " + event.getTrigger().getClass().getName());
+
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		MessageDialog.openInformation(window.getShell(), "Rcptry2", "Hello, Eclipse world");
 
@@ -26,7 +27,7 @@ public class FlashHandler extends AbstractHandler {
 
 		return null;
 	}
-	
+
 	void handleSelection() throws Exception {
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		ISelection selection = selectionService.getSelection("org.eclipse.ui.navigator.ProjectExplorer");
