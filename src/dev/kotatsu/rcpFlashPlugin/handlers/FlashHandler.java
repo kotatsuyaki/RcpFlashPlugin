@@ -21,7 +21,7 @@ public class FlashHandler extends AbstractHandler {
 		try {
 			final Flash flash = new Flash(event);
 			flash.execute();
-		} catch (Exception e) {
+		} catch (Flash.FlashException e) {
 			System.err.printf("Error caught in FlashHandler.execute: %s\n", e.toString());
 		}
 
@@ -32,19 +32,17 @@ public class FlashHandler extends AbstractHandler {
 
 // The context of a single flash event.
 final class Flash {
-	final private ExecutionEvent event;
 	final private IWorkbenchWindow window;
 
 	public Flash(ExecutionEvent event) {
-		this.event = event;
 		this.window = HandlerUtil.getActiveWorkbenchWindow(event);
 	}
 
-	public void execute() throws ExecutionException {
+	public void execute() throws FlashException {
 		final IFile selectedFile = extractSelectedFile();
 
 		if (!isHexFile(selectedFile)) {
-			throw new ExecutionException("Selected file is not a hex file");
+			throw new FlashException("Selected file is not a hex file");
 		}
 
 		final URI selectedUri = selectedFile.getLocationURI();
@@ -54,22 +52,22 @@ final class Flash {
 	// Extract selected file from current selection.
 	// Throws if selection is of an unexpected class, if has multiple selections, or
 	// if selected item is not a file.
-	private IFile extractSelectedFile() throws ExecutionException {
+	private IFile extractSelectedFile() throws Flash.FlashException {
 		final ISelectionService selectionService = window.getSelectionService();
 		final ISelection selection = selectionService.getSelection();
 
 		if (!(selection instanceof IStructuredSelection)) {
-			throw new ExecutionException("Selection is not an IStructuredSelection");
+			throw new FlashException("Selection is not an IStructuredSelection");
 		}
 		final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 
 		if (structuredSelection.size() != 1) {
-			throw new ExecutionException(String.format("Selection has size %d != 1", structuredSelection.size()));
+			throw new FlashException(String.format("Selection has size %d != 1", structuredSelection.size()));
 		}
 		final Object selectedItem = structuredSelection.getFirstElement();
 
 		if (!(selectedItem instanceof IFile)) {
-			throw new ExecutionException("Selection is not an IFile");
+			throw new FlashException("Selection is not an IFile");
 		}
 		final IFile selectedFile = (IFile) Platform.getAdapterManager().getAdapter(selectedItem, IFile.class);
 		return selectedFile;
@@ -83,5 +81,12 @@ final class Flash {
 
 	private void openMessageDialog(String title, String message) {
 		MessageDialog.openInformation(window.getShell(), title, message);
+	}
+
+	@SuppressWarnings("serial")
+	public class FlashException extends Exception {
+		public FlashException(String message) {
+			super(message);
+		}
 	}
 }
